@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use App\Question;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -38,8 +39,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function questions() 
+    public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function getUrlAttribute()
+    {
+        // return route('question.show', $this->id);
+        return '#';
     }
 }
