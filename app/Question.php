@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Answer;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
@@ -47,5 +48,10 @@ class Question extends Model
     public function getBodyHtmlAttribute()
     {
         return \Parsedown::instance()->text($this->body);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 }
